@@ -78,5 +78,30 @@ app.post('/messages/save', async (req, res) => {
   }
 })
 
+app.get('/About', async (req, res) => { 
+  try {
+    const aboutData = {
+      name: "Jason Tran",
+      bio: `Hi! I'm Jason Tran, a Senior Computer Science Major at NYU. 
+      I was originally born in Vietnam but moved to the US in 5th grade and have lived in Princeton and NYC. 
+      In my free time, I enjoy playing FIFA, experimenting with new technologies, and building Legos.
+      Throughout my time at NYU, I have been a member of Zeta Beta Tau, the Asian American Club, 
+      and the Vietnamese Student Association.
+      Postgrad, I would like to stay in NYC and find a job specializing in Construction Technology!`,
+      imageUrl: "https://i.imgur.com/Chvtl0a.jpeg"
+    };
+
+    return res.json({
+      about: aboutData,
+      status: "all good",
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(400).json({
+      error: err,
+      status: "failed to retrieve the about data",
+    });
+  }
+});
 // export the express app we created to make it available to other modules
 module.exports = app // CommonJS export style!
